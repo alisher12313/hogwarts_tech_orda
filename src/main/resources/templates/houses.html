@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hogwarts Houses</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<nav class="nav">
+    <a href="/">Home</a>
+    <a href="/houses">Houses</a>
+    <a href="/characters">Characters</a>
+</nav>
+
+<h1 class="title">Hogwarts Houses</h1>
+
+<div class="grid">
+    <div class="card" th:each="h : ${houses}"
+         th:style="'border-color:' + ${h.primary}">
+        <h2 th:text="${h.name}"></h2>
+        <p><b>Symbol:</b> <span th:text="${h.symbol}"></span></p>
+        <p><b>Colors:</b>
+            <span th:text="${h.primary}"></span> /
+            <span th:text="${h.secondary}"></span>
+        </p>
+        <p th:text="${h.description}"></p>
+
+        <!-- опционально: кнопка открыть персонажей этого дома -->
+        <a class="btn" th:href="@{/characters(house=${h.name})}">View characters</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Characters</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<nav class="nav">
+    <a href="/">Home</a>
+    <a href="/houses">Houses</a>
+    <a href="/characters">Characters</a>
+</nav>
+
+<h1 class="title">Characters</h1>
+
+<div class="filters">
+    <a class="btn" th:href="@{/characters}">All</a>
+    <a class="btn" th:href="@{/characters(house='gryffindor')}">Gryffindor</a>
+    <a class="btn" th:href="@{/characters(house='slytherin')}">Slytherin</a>
+    <a class="btn" th:href="@{/characters(house='hufflepuff')}">Hufflepuff</a>
+    <a class="btn" th:href="@{/characters(house='ravenclaw')}">Ravenclaw</a>
+</div>
+
+<form class="search" method="get" action="/characters">
+    <input type="text" name="search" th:value="${search}" placeholder="Search by name...">
+    <input type="hidden" name="house" th:value="${house}">
+    <button type="submit">Search</button>
+</form>
+
+<div class="grid">
+    <div class="card" th:each="c : ${resp.items()}">
+        <img class="avatar" th:src="${c.image}" alt=""
+             onerror="this.src='/placeholder.png'">
+        <h3 th:text="${c.name}"></h3>
+        <p>House: <span th:text="${c.house}"></span></p>
+        <p>Patronus: <span th:text="${c.patronus}"></span></p>
+    </div>
+</div>
+
+<div class="pagination">
+    <a th:if="${resp.page() > 1}"
+       th:href="@{/characters(page=${resp.page()-1}, search=${search}, house=${house})}">Prev</a>
+
+    <span th:text="${resp.page()}"></span> / <span th:text="${totalPages}"></span>
+
+    <a th:if="${resp.page() < totalPages}"
+       th:href="@{/characters(page=${resp.page()+1}, search=${search}, house=${house})}">Next</a>
+</div>
+
+</body>
+</html>
