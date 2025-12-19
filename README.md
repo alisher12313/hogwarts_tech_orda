@@ -437,5 +437,7 @@ Harry Potter and all related names, characters, and elements are trademarks of W
 ## Deployment
 Live demo: https://hogwartstechorda-production.up.railway.app
 
+## PS
+Couldn't add more functionalities due to final weeks but tried to add search based on name and house
 
 **Built with ❤️ and ☕ by Alisher Abden**
