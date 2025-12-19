@@ -2,3 +2,5 @@ spring:
   application:
     name: hogwarts
 
+server:
+  port: ${PORT:8080}
